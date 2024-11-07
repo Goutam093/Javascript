@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 8px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        input[type="email"],
+        input[type="text"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .alert {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Email Verification</h2>
+
+        <!-- Form to enter email and send verification code -->
+        <div id="email-form">
+            <label for="email">Enter your email address:</label>
+            <input type="email" id="email" placeholder="Enter your email" required />
+            <button type="button" onclick="sendVerificationCode()">Send Verification Code</button>
+        </div>
+
+        <!-- Form to enter verification code -->
+        <div id="verification-form" style="display: none;">
+            <label for="code">Enter the verification code:</label>
+            <input type="text" id="code" placeholder="Enter the code sent to your email" required />
+            <button type="button" onclick="verifyCode()">Verify Code</button>
+        </div>
+
+        <div id="message" class="alert"></div>
+    </div>
+
+    <script>
+        // Simulated generated verification code (this would come from the server)
+        let verificationCode = null;
+
+        // Function to simulate sending the verification code
+        function sendVerificationCode() {
+            const email = document.getElementById('email').value;
+
+            // Validate email input
+            if (!email) {
+                document.getElementById('message').textContent = "Please enter a valid email address.";
+                return;
+            }
+
+            // Simulate generating a random verification code (6 digits)
+            verificationCode = Math.floor(100000 + Math.random() * 900000);
+            console.log("Verification Code Sent: " + verificationCode);  // For testing purposes
+
+            // Simulate sending the email
+            setTimeout(() => {
+                document.getElementById('email-form').style.display = 'none';
+                document.getElementById('verification-form').style.display = 'block';
+                document.getElementById('message').textContent = "A verification code has been sent to your email!";
+            }, 1000);  // Simulate a delay in sending the code
+        }
+
+        // Function to simulate verifying the entered code
+        function verifyCode() {
+            const enteredCode = document.getElementById('code').value;
+
+            // Check if the entered code matches the generated one
+            if (enteredCode == verificationCode) {
+                document.getElementById('message').textContent = "Email successfully verified!";
+                document.getElementById('message').style.color = 'green';
+            } else {
+                document.getElementById('message').textContent = "Invalid verification code. Please try again.";
+                document.getElementById('message').style.color = 'red';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
