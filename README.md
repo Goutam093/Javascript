@@ -12,7 +12,6 @@ function validateEmail(email) {
     }
 }
 
-// Example usage
 const email = "user@example.com";
 if (validateEmail(email)) {
     console.log("Valid email!");
